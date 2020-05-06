@@ -1,2 +1,3 @@
 
-$('#submit').html("<%= j(render partial: 'postcomment_place', locals: {book: @book, post_comment_new: @post_comment_new}) %>");
+$('#post-<%= @comment.id %>').remove();
+

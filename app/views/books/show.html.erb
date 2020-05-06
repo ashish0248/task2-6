@@ -52,8 +52,14 @@
 
 		<div>
 		<h4>コメント</h4>
-		<td  id="comment-<%= @book.id %>">
+		<table id=comment>
+				<tbody>
+					<tr>
+						<td>
 			  <%= render partial: "post_comments/postcomment_place", locals: {book: @book, post_comment_new: @post_comment_new} %></td>
+					</tr>
+				</tbody>
+			</table>	
 
 	</div>
 
