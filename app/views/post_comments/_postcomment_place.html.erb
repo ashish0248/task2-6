@@ -1,0 +1,18 @@
+		<h4>コメント</h4>
+	 	<% @book.post_comments.each do |post_comment| %>
+	 		<ol>
+	 		<%= attachment_image_tag(post_comment.user, :profile_image, :fill, 50, 50, fallback: "no-image-mini.jpg") %>
+	 		<%= post_comment.comment %>
+		 <div><%= post_comment.user.name %></div>
+		 <% if post_comment.user == current_user %>
+  			<%= link_to "削除",  book_post_comment_path(@book.id, post_comment.id), method: :delete %>
+			<% end %>
+		 
+		</ol>
+		<% end %>
+		</div>
+		<%= form_with [@book, @post_comment] do |f| %>
+
+            <%= f.text_area :comment %>
+   	 		<%= f.submit "送信" %> 
+		<% end %>

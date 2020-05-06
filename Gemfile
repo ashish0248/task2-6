@@ -71,3 +71,4 @@ gem 'jquery-rails'
 
 gem 'pry-byebug'
 
+# gem 'remotipart', '~> 1.0'

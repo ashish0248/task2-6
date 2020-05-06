@@ -69,16 +69,14 @@
   			<%= link_to "削除",  book_post_comment_path(@book.id, post_comment.id), method: :delete %>
 			<% end %>
 		 
-<!-- 	 	<div><%= post_comment.created_at.strftime('%Y/%m/%d') %></div> -->
 		</ol>
 		<% end %>
 		</div>
-
-	<%= form_for [@book, @post_comment] do |f| %>
+		<%= form_for [@book, @post_comment] do |f| %>
 
             <%= f.text_area :comment %>
-   	 <%= f.submit "送信" %>
-	<% end %>
+   	 		<%= f.submit "送信" %> 
+		<% end %>
 
 	</div>
 
