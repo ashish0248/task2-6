@@ -1,7 +1,7 @@
 <div class="body">
-		<% if @post_comment.errors.any? %>
+		<% if @post_comment_new.errors.any? %>
         <div class="alart-message">
-           <h3 class="alart-body"><%= pluralize(@post_comment.errors.count, "error") %> prohibited this book from being saved:</h3>
+           <h3 class="alart-body"><%= pluralize(@post_comment_new.errors.count, "error") %> prohibited this book from being saved:</h3>
           <ul>
              <% @post_comment.errors.full_messages.each do |message| %>
                  <li><%= message %></li>
@@ -52,25 +52,8 @@
 
 		<div>
 		<h4>コメント</h4>
-
-
-	 	<% @book.post_comments.each do |post_comment| %>
-	 		<ol>
-	 		<%= attachment_image_tag(post_comment.user, :profile_image, :fill, 50, 50, fallback: "no-image-mini.jpg") %>
-	 		<%= post_comment.comment %>
-		 <div><%= post_comment.user.name %></div>
-		 <% if post_comment.user == current_user %>
-  			<%= link_to "削除",  book_post_comment_path(@book.id, post_comment.id), method: :delete %>
-			<% end %>
-		 
-		</ol>
-		<% end %>
-		</div>
-		<%= form_for [@book, @post_comment] do |f| %>
-
-            <%= f.text_area :comment %>
-   	 		<%= f.submit "送信" %> 
-		<% end %> 
+		<td  id="comment-<%= @book.id %>">
+			  <%= render partial: "post_comments/postcomment_place", locals: {book: @book, post_comment_new: @post_comment_new} %></td>
 
 	</div>
 

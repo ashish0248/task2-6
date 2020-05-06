@@ -1,24 +1,19 @@
 
-	 	<% book.post_comments.each do |post_comment| %>
-	 		<ol>
-	 		<%= attachment_image_tag(post_comment.user, :profile_image, :fill, 50, 50, fallback: "no-image-mini.jpg") %>
-	 		<%= post_comment.comment %>
-		 <div><%= post_comment.user.name %></div>
-		 <% if post_comment.user == current_user %>
-  			<%= link_to "削除",  book_post_comment_path(@book.id, post_comment.id), method: :delete %>
-			<% end %>
-		 
-		</ol>
-		<% end %>
-		</div>
-		<%= form_with [@book, @post_comment] do |f| %>
-		<%= form_with model: @post do |f|%>
+<% book.post_comments.each do |post_comment| %>
+	<ol>
+		<%#= link_to(book.user) do %>
 
-            <%= f.text_area :comment %>
-   	 		<%= f.submit "送信" %> 
-		<% end %>
+	 	<%= attachment_image_tag(post_comment.user, :profile_image, :fill, 50, 50, fallback: "no-image-mini.jpg") %>
+ 		<%= post_comment.comment %>
+		<div><%= post_comment.user.name %></div>
+	 	<% if post_comment.user == current_user %>
+			<%= link_to "削除",  book_post_comment_path(@book.id, post_comment.id), method: :delete, remote: true  %>
+	 	<% end %>
+	</ol>
+<% end %>
 
 
-
-		<!-- 			<td  id="commtent-<%= @book.id %>">
-			        	<%= render 'post_comments/postcomment_place', book: @book %></td> -->
+<%= form_with model: [book, post_comment_new] do |f| %>
+	<%= f.text_field :comment %>
+	<%= f.submit "投稿",id: "submit"%>
+<% end %>
