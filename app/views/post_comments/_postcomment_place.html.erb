@@ -1,5 +1,5 @@
-		<h4>コメント</h4>
-	 	<% @book.post_comments.each do |post_comment| %>
+
+	 	<% book.post_comments.each do |post_comment| %>
 	 		<ol>
 	 		<%= attachment_image_tag(post_comment.user, :profile_image, :fill, 50, 50, fallback: "no-image-mini.jpg") %>
 	 		<%= post_comment.comment %>
@@ -12,7 +12,13 @@
 		<% end %>
 		</div>
 		<%= form_with [@book, @post_comment] do |f| %>
+		<%= form_with model: @post do |f|%>
 
             <%= f.text_area :comment %>
    	 		<%= f.submit "送信" %> 
 		<% end %>
+
+
+
+		<!-- 			<td  id="commtent-<%= @book.id %>">
+			        	<%= render 'post_comments/postcomment_place', book: @book %></td> -->
